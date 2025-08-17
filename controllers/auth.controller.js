@@ -71,7 +71,8 @@ export const verifyOtp = async (req, res) => {
             return res.status(200).json({
                 user: {
                     userId: user._id,
-                    phoneNumber: user.phoneNumber
+                    phoneNumber: user.phoneNumber,
+                    token: token
                 },
                 message: "OTP verified successfully!"
             })
@@ -84,7 +85,8 @@ export const verifyOtp = async (req, res) => {
             return res.status(200).json({
                 user: {
                     userId: newUser._id,
-                    phoneNumber: newUser.phoneNumber
+                    phoneNumber: newUser.phoneNumber,
+                    token: token
                 },
                 message: "OTP verified successfully!"
             })
