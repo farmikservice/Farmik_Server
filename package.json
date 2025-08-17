@@ -1,6 +1,7 @@
 {
   "name": "farmik_server",
   "version": "1.0.0",
+  "type": "module",
   "description": "farmik_server",
   "main": "index.js",
   "scripts": {
