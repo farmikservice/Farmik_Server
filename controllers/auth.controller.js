@@ -72,7 +72,7 @@ export const verifyOtp = async (req, res) => {
                 user: {
                     userId: user._id,
                     phoneNumber: user.phoneNumber,
-                    token: token
+                    token: token 
                 },
                 message: "OTP verified successfully!"
             })
@@ -86,7 +86,7 @@ export const verifyOtp = async (req, res) => {
                 user: {
                     userId: newUser._id,
                     phoneNumber: newUser.phoneNumber,
-                    token: token
+                    token: token 
                 },
                 message: "OTP verified successfully!"
             })
