@@ -12,54 +12,53 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-
     phoneNumber: {
         type: String,
         required: true,
         unique: true,
         maxLength: 13
     },
-
     address: {
         type: addressSchema,
         default: {}
     },
-
     DOB: {
         type: Date,
-        default: Date.now
+        default: ""
     },
-
     licenseNumber: {
         type: String,
         default: null
     },
-
     isProvider: {
         type: Boolean,
         default: false
     },
-
-    verificationStatus: {
-        type: String,
-        enum: ["pending", "confirmed", "rejected"],
-        default: "pending"
-    },
-
     aadharNumber: {
         type: String,
         default: null
     },
-
     isAgent: {
         type: Boolean,
         default: false
     },
-
     isAdmin: {
         type: Boolean,
         default: false
-    }
+    },
+    accountNumber: {
+        type: String,
+        default: ""
+    },
+    ifscCode: {
+        type: String,
+        default: ""
+    },
+    verificationStatus: {
+        type: String,
+        enum: ["pending", "requested", "confirmed", "rejected"],
+        default: "pending"
+    },
 }, {
     timestamps: true
 });
