@@ -6,6 +6,8 @@ import bodyParser from 'body-parser'
 import connectToDB from './utils/connectToDB.js'
 
 import authRoutes from './routes/auth.routes.js'
+import userRoutes from './routes/user.routes.js'
+import productRoutes from './routes/product.routes.js'
 
 const app = express();
 dotenv.config();
@@ -29,6 +31,8 @@ app.get('/', (req, res) => {
 
 // Auth routes
 app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/product', productRoutes)
 
 app.listen(process.env.PORT, async() => {
     console.log(`Server listening on : localhost:${process.env.PORT}`);
