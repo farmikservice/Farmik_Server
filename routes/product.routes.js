@@ -1,15 +1,24 @@
-import express from 'express'
-import { verifyToken } from '../middlewares/authMiddleware.js';
-import { createProduct} from '../controllers/product.controller.js';
+import express from "express";
 import multer from "multer";
+import {
+    getProducts,
+    getProductById,
+    updateProduct,
+    deleteProduct,
+    createProduct,
+} from "../controllers/product.controller.js";
+import { verifyToken } from "../middlewares/authMiddleware.js";
 
-var uploader = multer({
-    storage: multer.diskStorage({}),
-    limits: {fileSize: 500000}
-})
+const productRouter = express.Router();
 
-const productRoutes = express.Router();
+// Multer setup (temporary storage before Cloudinary upload)
+const upload = multer({ dest: "uploads/" });
 
-productRoutes.post('/add', verifyToken, uploader.single('image'), createProduct)
+// Routes
+productRouter.post("/add", upload.single("image"), createProduct);
+productRouter.get("/", getProducts);
+productRouter.get("/:id", getProductById);
+productRouter.patch("/update/:id", upload.single("image"), updateProduct);
+productRouter.delete("/delete/:id", deleteProduct);
 
-export default productRoutes
+export default productRouter;

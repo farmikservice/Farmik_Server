@@ -8,6 +8,7 @@ import connectToDB from './utils/connectToDB.js'
 import authRoutes from './routes/auth.routes.js'
 import userRoutes from './routes/user.routes.js'
 import productRoutes from './routes/product.routes.js'
+import { v2 as cloudinary } from "cloudinary";
 
 const app = express();
 dotenv.config();
@@ -17,6 +18,13 @@ const clorsOption = {
     methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
     credentials: true,
 };
+
+// Cloudinary Config
+cloudinary.config({
+    cloud_name:process.env.CLOUDINARY_CLOUD_NAME,
+    api_key:process.env.CLOUDINARY_API_KEY,
+    api_secret:process.env.CLOUDINARY_API_SECRET,
+});
 
 app.use(cors(clorsOption));
 app.use(cookieParser());
@@ -32,7 +40,7 @@ app.get('/', (req, res) => {
 // Auth routes
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
-app.use('/api/product', productRoutes)
+app.use('/api/products', productRoutes)
 
 app.listen(process.env.PORT, async() => {
     console.log(`Server listening on : localhost:${process.env.PORT}`);

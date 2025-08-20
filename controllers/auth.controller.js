@@ -99,18 +99,18 @@ export const verifyOtp = async (req, res) => {
 }
 
 // Logout API POST : /api/auth/logout
-export const logout = async (req, res) => {
+export const logout = async(req, res) => {
     try {
         res.cookie('jwt', '', {
-            maxAge: 0,
-            httpOnly: true,
-            secure: true,
-            sameSite: "None"
+            maxAge : 0,   
+            httpOnly : true,
+            secure : true,
+            sameSite : "None"
         })
         return res.status(200).json({ message: "Logged out successfully!" });
-    } catch (err) {
+    } catch(err) {
         console.log("Error in logout controller", logout)
-        res.status(500).json({ message: "Internal server error!" })
+        res.status(500).json({message : "Internal server error!"})
     }
 }
 
