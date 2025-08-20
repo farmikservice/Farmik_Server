@@ -105,3 +105,21 @@ export const deleteProduct = async (req, res) => {
         res.status(500).json({ success: false, message: error.message });
     }
 };
+
+
+// GET Products by User API GET : /api/products/user/:userId
+export const getUserProducts = async (req, res) => {
+    try {
+        const { userId } = req.params;
+
+        if (!userId) {
+            return res.status(400).json({ success: false, message: "User ID is required" });
+        }
+
+        const products = await Product.find({ userId }).sort({ date: -1 });
+
+        res.json({ success: true, products });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};

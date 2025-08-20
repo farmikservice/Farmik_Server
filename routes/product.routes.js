@@ -6,6 +6,7 @@ import {
     updateProduct,
     deleteProduct,
     createProduct,
+    getUserProducts,
 } from "../controllers/product.controller.js";
 import { verifyToken } from "../middlewares/authMiddleware.js";
 
@@ -20,5 +21,6 @@ productRouter.get("/", getProducts);
 productRouter.get("/:id", getProductById);
 productRouter.patch("/update/:id", upload.single("image"), updateProduct);
 productRouter.delete("/delete/:id", deleteProduct);
+productRouter.get("/user/:userId", getUserProducts);
 
 export default productRouter;
