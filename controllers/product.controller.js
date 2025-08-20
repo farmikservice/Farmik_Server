@@ -48,7 +48,7 @@ export const createProduct = async (req, res) => {
 // Get all products API GET : /api/products
 export const getProducts = async (req, res) => {
     try {
-        const products = await Product.find().populate("userId", "name email");
+        const products = await Product.find();
         res.json({ success: true, products });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
@@ -58,7 +58,7 @@ export const getProducts = async (req, res) => {
 // Get single product API GET : /api/products/:id
 export const getProductById = async (req, res) => {
     try {
-        const product = await Product.findById(req.params.id).populate("userId", "name email");
+        const product = await Product.findById(req.params.id);
         if (!product) return res.status(404).json({ message: "Product not found" });
         res.json({ success: true, product });
     } catch (error) {
