@@ -94,9 +94,11 @@ export const verifyOtp = async (req, res) => {
 
     } catch (err) {
         console.log("Error in verify OTP controller", err)
-        res.status(500).json({ message: "Internal server error!" })
+        return res.status(500).json({ message: "Internal server error!" })
     }
 }
+
+// Resend OTP API POST : /api/auth/resend-otp
 
 // Logout API POST : /api/auth/logout
 export const logout = async(req, res) => {
@@ -110,7 +112,7 @@ export const logout = async(req, res) => {
         return res.status(200).json({ message: "Logged out successfully!" });
     } catch(err) {
         console.log("Error in logout controller", logout)
-        res.status(500).json({message : "Internal server error!"})
+        return res.status(500).json({message : "Internal server error!"})
     }
 }
 
@@ -141,13 +143,13 @@ export const verifyProvider = async (req, res) => {
 
         await user.save();
 
-        res.status(200).json({
+        return res.status(200).json({
             message: "Your profile is now under review",
             user,
         });
     } catch (err) {
         console.error("Error in provider verification:", err);
-        res.status(500).json({ message: "Internal server error" });
+        return res.status(500).json({ message: "Internal server error" });
     }
 }
 
@@ -181,13 +183,13 @@ export const registerAgent = async (req, res) => {
 
     await newAgent.save();
 
-    res.status(201).json({
+    return res.status(201).json({
       message: "Your profile is under review.",
       user: newAgent,
     });
   } catch (err) {
     console.error("Error in register agent:", err);
-    res.status(500).json({ message: "Internal server error" });
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -223,14 +225,14 @@ export const ConfirmProvider = async (req, res) => {
     user.verificationStatus = "confirmed";
     await user.save();
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "User has been confirmed as a provider partner.",
       confirmedBy: agent.fullName,
     });
   } catch (err) {
     console.error("Error in Confirm Provider:", err);
-    res.status(500).json({ success: false, message: "Internal server error" });
+    return res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
 
@@ -266,7 +268,7 @@ export const ConfirmAgent = async (req, res) => {
     agent.verificationStatus = "confirmed";
     await agent.save();
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "User has been confirmed as a agent partner.",
       confirmedBy: admin.fullName,
@@ -274,6 +276,6 @@ export const ConfirmAgent = async (req, res) => {
     });
   } catch (err) {
     console.error("Error in Confirm Agent:", err);
-    res.status(500).json({ success: false, message: "Internal server error" });
+    return res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
