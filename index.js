@@ -8,6 +8,8 @@ import connectToDB from './utils/connectToDB.js'
 import authRoutes from './routes/auth.routes.js'
 import userRoutes from './routes/user.routes.js'
 import productRoutes from './routes/product.routes.js'
+import orderRoutes from './routes/order.routes.js'
+
 import { v2 as cloudinary } from "cloudinary";
 
 const app = express();
@@ -40,7 +42,8 @@ app.get('/', (req, res) => {
 // Auth routes
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
-app.use('/api/products', productRoutes)
+app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
 
 app.listen(process.env.PORT, async() => {
     console.log(`Server listening on : localhost:${process.env.PORT}`);

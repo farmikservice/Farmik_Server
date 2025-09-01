@@ -11,7 +11,7 @@ const otpSchema = new mongoose.Schema({
     otp: { 
         type: String, 
         required: true ,
-        max : 6 // Change this to 4 in deployment
+        max : 4
     },
     createdAt: { 
         type: Date, 
